@@ -1,5 +1,5 @@
 """AuctionNet Table 2 split, through the paper's extractors and functions unchanged:
-extract5.py (2% matcher), revision/extract8.py (text-reader segments), read_vals (t10_judge7), hybrid/classify (t10b).
+extract5.py (2% matcher), revision/extract8.py (text-reader segments), read_vals (t10_analyses), hybrid/classify (t10b).
 S is rebuilt for AuctionNet scenarios with the same fields the eBay S has. Family = category|value.
 Usage: python an_split.py <results_dir> [closed_letters_dir]. Writes results/AN/an_split[_closed].json and an_traces.pkl."""
 import json, os, sys, glob, subprocess, tempfile, re
@@ -22,7 +22,7 @@ def _grab(path, name):
     src = open(path).read(); i = src.index(f"def {name}(")
     j = re.search(r"\n(?=\S)", src[i + 1:]); return src[i: i + 1 + j.start()] if j else src[i:]
 ns = dict(S=S, np=np)
-for p, n in ((f"{A}/revision/t10_judge7.py", "read_vals"), (f"{A}/revision/t10b_hybrid_split.py", "hybrid"), (f"{A}/revision/t10b_hybrid_split.py", "classify")):
+for p, n in ((f"{A}/revision/t10_analyses.py", "read_vals"), (f"{A}/revision/t10b_hybrid_split.py", "hybrid"), (f"{A}/revision/t10b_hybrid_split.py", "classify")):
     exec(_grab(p, n), ns)
 read_vals, hybrid, classify = ns["read_vals"], ns["hybrid"], ns["classify"]
 # traces -> extractor input format

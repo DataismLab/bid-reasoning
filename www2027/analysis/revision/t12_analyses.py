@@ -1,4 +1,4 @@
-"""Round-9 judge fixes (CPU, saved data only).
+"""CPU analyses on saved data.
 D1  Truncation-free subsets: forced-768 traces that finished the list by token 600; unforced traces that finished the
     list (any model); passed-over rate and share of their gap. 768-forced vs unforced q for Granite.
 D2  Split the gap into truncation-driven (not reached + incomplete) vs passed over a finished list vs arithmetic.
@@ -10,7 +10,7 @@ D6  DeepSeek oracle interval: held-out loss of the decisions where the oracle di
 D7  Intervals for: reader and answer at 512; voting; correct-when-stopping rate.
 """
 import json, numpy as np, pandas as pd
-_src = open("t11_judge8.py").read()
+_src = open("t11_analyses.py").read()
 exec(_src[:_src.index("# ---------------- C1")])
 R = {k: {} for k in ["D1", "D2", "D3", "D4", "D5", "D6", "D7"]}
 z768 = tf[tf.budget == 768]
@@ -32,7 +32,7 @@ for m in MODELS:
     R["D2"][m] = dict(truncation=float(z.gap[c.isin(["not_reached", "incomplete"])].sum() / T), passed=float(z.gap[c == "passed"].sum() / T),
                       arith=float(z.gap[c == "arith"].sum() / T))
 # D3 synthetic audit
-_t10 = open("t10_judge7.py").read(); exec(_t10[_t10.index("# synthetic"):_t10.index("sq0 =")])
+_t10 = open("t10_analyses.py").read(); exec(_t10[_t10.index("# synthetic"):_t10.index("sq0 =")])
 for m in MODELS:
     z = sy[(sy.model == m) & (sy.budget == 768)]
     rb = np.array([pick(vv, 2, b) for vv, b in zip(z.vals, z.selected_bid)], float)
@@ -87,7 +87,7 @@ for m in MODELS:
     R["D7"][m] = dict(ans512=[float(x) for x in st(z)][0], ans512_ci=[float(np.percentile(bs[:, 0], 2.5)), float(np.percentile(bs[:, 0], 97.5))],
                       rd512=[float(x) for x in st(z)][1], rd512_ci=[float(np.percentile(bs[:, 1], 2.5)), float(np.percentile(bs[:, 1], 97.5))],
                       natural_stop_n=int(len(zn)), natural_stop_right=float(right.mean()))
-json.dump(R, open(f"{OUTDIR}/t12_judge9.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t12_analyses.json", "w"), indent=1, default=float)
 r3 = lambda o: round(float(o), 3)
 for k in R:
     print("=====", k)

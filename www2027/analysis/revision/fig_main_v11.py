@@ -30,7 +30,7 @@ a.set_xlabel("Reasoning tokens"); a.set_ylabel("Held-out utility ratio"); style(
 a.set_title("(a) eBay price data",fontsize=8.5,loc="left")
 # (b) cumulative incidence: share of ALL unconstrained traces that have evaluated every option by token t
 import json as _j
-A3=_j.load(open("out/t9_judge6.json"))["A3"]
+A3=_j.load(open("out/t9_analyses.json"))["A3"]
 a=ax[1]; grid=np.arange(0,1025,8)
 for m,l in key.items(): a.plot(grid,A3[m]["all"]["curve"],color=col[l],lw=1.4)
 a.axvline(768,color=INK,lw=0.8,ls="--"); a.text(760,0.03,"forced\nbudget",fontsize=7,ha="right",color=INK)

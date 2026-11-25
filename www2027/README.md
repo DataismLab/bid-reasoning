@@ -23,7 +23,7 @@ The scripts use the fixed root `/tmp/www2027`, which `setup_paths.sh` creates as
 | Paper item | Script (under `analysis/`) | Output (under `results/` unless noted) |
 | --- | --- | --- |
 | Table 1: $q(0)$, $q(768)$, $q$ by budget | `arxiv/collect_ebay.py` | `arxiv/ebay_budget.json` |
-| Table 1: Answer (768 tokens) and dollar recovery | `revision/t10_judge7.py` (B8) | `analysis/revision/out/t10_judge7.json` |
+| Table 1: Answer (768 tokens) and dollar recovery | `revision/t10_analyses.py` (B8) | `analysis/revision/out/t10_analyses.json` |
 | Table 1: Closed (closed-block readout) | `followup/r1_analysis.py` | `R1/r1_summary.json` |
 | Table 1: Stated answer | `rev25/r3_stated_answer.py` | `rev25/r3_stated_answer.json` |
 | Table 1: 1,024 run | `revision/t8_fixes.py` (F1) | `analysis/revision/out/t8_fixes.json` |
@@ -31,7 +31,7 @@ The scripts use the fixed root `/tmp/www2027`, which `setup_paths.sh` creates as
 | Table 1: AuctionNet | `auctionnet/an_p0_analysis.py` | `AN/an_p0_summary.json` |
 | Table 1: Break-even, cost | `rev25/r6_r8_robustness.py` | `rev25/r6_r8_robustness.json` |
 | Table 2: gap split | `revision/t10b_hybrid_split.py` | `analysis/revision/out/t10b_hybrid_split.json` |
-| Table 2: finished, medians; Figure 1b | `revision/t9_judge6.py` | `analysis/revision/out/t9_judge6.json` |
+| Table 2: finished, medians; Figure 1b | `revision/t9_analyses.py` | `analysis/revision/out/t9_analyses.json` |
 | Arithmetic upper bound | `rev25/r2b_reader_only_split.py` | `rev25/r2b_reader_only_split.json` |
 | Figure 1 | `rev25/fig_main_v43.py` | `paper/figures/main_figure_v43.pdf` |
 | Unforced 4,096-token runs | `followup/run1_analysis.py`, `followup/run1_phi4096_analysis.py` | `followup/run1_summary.json`, `followup/run1_phi4096_summary.json` |
@@ -82,5 +82,5 @@ Each decision row records the scenario, option order, reasoning text, chosen bid
 
 ## Other folders
 
-- `judge/label/`: per-option values recorded for 150 traces, read by the parser checks in `analysis/revision/`.
+- `stated_value_labels/`: per-option values recorded for 150 traces, read by the parser checks in `analysis/revision/`.
 - `human_annotation/`: a package for hand-labelling 100 traces. It was not used for any number in the paper; all splits come from code.

@@ -1,4 +1,4 @@
-"""Round-11 judge fixes (CPU, saved data only).
+"""CPU analyses on saved data.
 F1  First-price equilibrium win curve: rivals draw values from the lognormal fitted in t13 (closing price = second-highest
     of n values) and bid the symmetric first-price equilibrium beta(x) = x - int_0^x G^{N-1} / G(x)^{N-1} with N = n+1
     bidders. A bid b wins with probability mean_j G(beta^{-1}(b))^{n_j}. Re-score choices and the calculator.
@@ -10,7 +10,7 @@ F5  Dollar-weighted decomposition.
 """
 import json, numpy as np, pandas as pd
 from scipy import stats
-_src = open("t13_judge10.py").read()
+_src = open("t13_analyses.py").read()
 exec(_src[:_src.index("# ---------------- E2")].replace('for m in MODELS: R["E1"][m] = score_curve(OS, m)', ''))
 R = {k: {} for k in ["F1", "F2", "F3", "F4", "F5"]}
 fit = R_E1 = None
@@ -81,7 +81,7 @@ for m in MODELS:
     hd = {r.scenario_id: {float(x["bid"]): x for x in json.loads(r.candidates_json)} for r in sc.reset_index().itertuples()} if m == MODELS[0] else hd
     du = np.array([hd[i][c]["test_u"] - hd[i][float(b)]["test_u"] for i, b, c in zip(z.scenario_id, z.chosen_bid, z.calc)])
     T = du.sum(); R["F5"][m] = {k: float(du[z.cls.values == k].sum() / T) for k in cats}
-json.dump(R, open(f"{OUTDIR}/t14_judge11.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t14_analyses.json", "w"), indent=1, default=float)
 r3 = lambda o: round(float(o), 3)
 for k in R:
     print("=====", k)

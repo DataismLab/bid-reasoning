@@ -4,7 +4,7 @@ Writes results/cpu_revisions/tables_check.json and prints any mismatch."""
 import json, re, os
 RP = "/tmp/www2027/results/cpu_revisions/repro"; TEX = "/tmp/www2027/paper/main.tex"
 J = lambda n: json.load(open(f"{RP}/{n}.json"))
-t7, t8, t9, t10, t10b, t12, t13 = J("t7_costs"), J("t8_fixes"), J("t9_judge6"), J("t10_judge7"), J("t10b_hybrid_split"), J("t12_judge9"), J("t13_judge10")
+t7, t8, t9, t10, t10b, t12, t13 = J("t7_costs"), J("t8_fixes"), J("t9_analyses"), J("t10_analyses"), J("t10b_hybrid_split"), J("t12_analyses"), J("t13_analyses")
 MODELS = ["deepseek_r1_llama_8b", "phi4_mini_reasoning", "qwen3_4b", "qwen3_8b", "qwen3_14b", "granite_3_2_8b_instruct"]
 LAB = dict(zip(MODELS, ["DeepSeek-8B", "Phi-mini", "Qwen3-4B", "Qwen3-8B", "Qwen3-14B", "Granite-8B"]))
 p = lambda x: round(100 * x)

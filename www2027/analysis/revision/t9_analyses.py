@@ -1,4 +1,4 @@
-"""Round-6 judge fixes (CPU, saved data only).
+"""CPU analyses on saved data.
 A1  Stated-value verifier: argmax of the expected profits the trace itself states (strict matcher: '(v-b) * p = r'
     with p equal to the displayed probability, or 'Option X is $r'), using only the menu shown to the model, never the
     true values. Variants: any stated value / at least K-1 stated. Gap recovered by budget, family-bootstrap CIs at 768.
@@ -189,7 +189,7 @@ for m in MODELS:
                          ci=[float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))])
     R["A7"][m] = res
 
-json.dump(R, open(f"{OUTDIR}/t9_judge6.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t9_analyses.json", "w"), indent=1, default=float)
 def r2(o): return round(float(o), 3)
 for k in R:
     print("=====", k)

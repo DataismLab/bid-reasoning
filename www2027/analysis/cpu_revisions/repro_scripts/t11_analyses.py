@@ -1,4 +1,4 @@
-"""Round-8 judge fixes (CPU, saved data only). Builds on t10b's hybrid written values.
+"""CPU analyses on saved data. Builds on t10b's hybrid written values.
 C1  Null baselines for overbidding: share of non-optimal options above the calculator's bid in the same menus;
     which option wrong answers take (highest bid = highest win probability, runner-up, first/last listed, budget-0
     answer) against chance; payment and win probability for wrong answers only.
@@ -154,7 +154,7 @@ R["C6"] = dict(coef=float(fe.params["cd"]), ci=[float(x) for x in fe.conf_int().
 R["C7"]["oracle_equals_calc"] = {m: float(np.isclose(z768[z768.model == m].best_eval_bid.fillna(-1), z768[z768.model == m].calc).mean()) for m in MODELS}
 zn = tf[(tf.model == "granite_3_2_8b_instruct") & (tf.budget == -1)]
 R["C7"]["granite_unforced_incomplete"] = float(zn.gap[zn.cls == "incomplete"].sum() / zn.gap.sum())
-json.dump(R, open(f"{OUTDIR}/t11_judge8.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t11_analyses.json", "w"), indent=1, default=float)
 r3 = lambda o: round(float(o), 3)
 for k in R:
     print("=====", k)

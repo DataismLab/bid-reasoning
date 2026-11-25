@@ -1,4 +1,4 @@
-"""Round-10 judge fixes (CPU, saved data only).
+"""CPU analyses on saved data.
 E1  Order-statistic win curve: under independent private values and proxy bidding, an auction's closing price is the
     second-highest of its n bidders' values. Fit a lognormal value distribution G per product by maximum likelihood on
     held-out (closing price, n) pairs with n >= 2; a new bidder wins at b with probability mean_j G(b)^{n_j}. Re-score
@@ -19,7 +19,7 @@ E7  Stochastic seeds: q by budget (mean and seed SD), 5-seed majority vote at 76
 """
 import json, numpy as np, pandas as pd
 from scipy import stats, optimize
-_src = open("t11_judge8.py").read()
+_src = open("t11_analyses.py").read()
 exec(_src[:_src.index("# ---------------- C1")])
 R = {k: {} for k in ["E1", "E2", "E3", "E4", "E5", "E6", "E7"]}
 au = pd.read_csv("../auction_splits.csv")
@@ -149,7 +149,7 @@ for m in MODELS:
     dq = gg[(gg.model == m) & (gg.budget == 768)].test_utility_ratio.mean() - gg[(gg.model == m) & (gg.budget == 0)].test_utility_ratio.mean()
     out["greedy_energy_0_j"] = float(g0); out["greedy_energy_768_j"] = float(g7); out["extra_kj_per_0.01q"] = float((g7 - g0) / (100 * dq) / 1000)
     R["E7"][m] = out
-json.dump(R, open(f"{OUTDIR}/t13_judge10.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t13_analyses.json", "w"), indent=1, default=float)
 r3 = lambda o: round(float(o), 3)
 for k in R:
     print("=====", k)

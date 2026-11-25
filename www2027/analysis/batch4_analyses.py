@@ -1,4 +1,4 @@
-"""Batch 4: CPU analyses requested by blind review round 1.
+"""Batch 4: CPU analyses on saved data.
 F1 trace-implied bids, coverage by budget, calculator-gap decomposition, natural-length run vs tokens used
 F3 synthetic IPV replication
 F4 cost-charged cascades with early-budget probes and order agreement, scored on ratio gain

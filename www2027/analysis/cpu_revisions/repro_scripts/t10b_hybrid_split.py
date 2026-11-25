@@ -4,7 +4,7 @@ misread), else the option is unwritten. Categories in order: Not reached (best u
 do not put the best option first), Incomplete (not all options written), Passed (all written, best first, answer
 differs). Also per-option miscompute rate vs annotators, and the split for unforced traces that stopped on their own."""
 import json, numpy as np, pandas as pd
-exec(open("t10_judge7.py").read().split("# ---------------- B2")[0].split("for W in (300, 600, 1000):\n    for nm")[0])
+exec(open("t10_analyses.py").read().split("# ---------------- B2")[0].split("for W in (300, 600, 1000):\n    for nm")[0])
 rng = np.random.default_rng(20261119)
 def hybrid(vals, fp, i):
     s = S[i]; out = {}
@@ -64,7 +64,7 @@ R["interruption"] = dict(right_complete={m: float(B3[(B3.model == m) & (B3.compl
                          n_incomplete={m: int(((B3.model == m) & (B3.complete == 0)).sum()) for m in MODELS},
                          pooled_bins={str(k): dict(n=int(len(x)), right=float(x.right.mean())) for k, x in inc.groupby("bin", observed=True)},
                          logit_coef=float(lg.params.iloc[1]), logit_p=float(lg.pvalues.iloc[1]))
-_t10 = open("t10_judge7.py").read(); exec(_t10[_t10.index("# synthetic"):_t10.index("sq0 =")])
+_t10 = open("t10_analyses.py").read(); exec(_t10[_t10.index("# synthetic"):_t10.index("sq0 =")])
 # ---------------- synthetic: hybrid split at 768 and within-scenario position logit
 sy["fp"] = sy.first_pos.map(json.loads)
 def hyb_s(vals, fp, e):

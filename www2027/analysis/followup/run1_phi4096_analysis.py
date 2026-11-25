@@ -15,7 +15,7 @@ A = "/tmp/www2027/analysis"
 RUN = "/tmp/www2027/results/followup/phi4096/results/followup/run1_nat4096"
 M1 = ["phi4_mini_reasoning"]
 
-# ---- new traces through the same steps as load_parse + t10_judge7 + t10b
+# ---- new traces through the same steps as load_parse + t10_analyses + t10b
 nf = pd.read_csv(f"{A}/followup_run1phi_first.csv")
 nf["K"] = nf.scenario_id.map(lambda i: S[i]["K"]); nf["fp"] = nf.first_pos.map(json.loads)
 nf["q_read"] = [q_of(i, b) for i, b in zip(nf.scenario_id, nf.chosen_bid)]

@@ -4,7 +4,7 @@ Each item below has a single sentence in the paper. All numbers come from the sc
 
 ## Seeds and GPU
 
-- **Sampled seeds.** Five sampled seeds were run at 128, 384 and 768 tokens. The seed standard deviation of q is at most 0.017 (`analysis/revision/t13_judge10.py`, E7).
+- **Sampled seeds.** Five sampled seeds were run at 128, 384 and 768 tokens. The seed standard deviation of q is at most 0.017 (`analysis/revision/t13_analyses.py`, E7).
 - **GPU for the 4,096-token run.** The 4,096-token run used an RTX 6000 Ada. The paper's runs used an RTX 4090, and an L40S for Qwen3-14B. Library versions and pinned weights were the same.
 - **Drift check.** Ten forced-768 decisions per model were rerun on the RTX 6000 Ada. They gave the original chosen option in 38 of 40 cases (`gpu_followup/`, `compare_drift.py`).
 

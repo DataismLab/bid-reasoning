@@ -1,4 +1,4 @@
-"""Batch 5: CPU analyses requested by blind review round 2.
+"""Batch 5: CPU analyses on saved data.
 F1 tokens-to-complete (Kaplan-Meier from the natural run, censored), q conditional on completion, prefix check
 F2 tokens per option evaluated; salvage readout for unfinished traces
 F3 eBay vs synthetic: completion and tokens per option on synthetic traces; eBay scored in-sample; scenario features
@@ -9,7 +9,7 @@ F9 bootstrap intervals for Table 2 shares
 """
 import json, numpy as np, pandas as pd
 import statsmodels.formula.api as smf
-exec(open("batch4_judge_r1.py").read().split("# ================= F1")[0])
+exec(open("batch4_analyses.py").read().split("# ================= F1")[0])
 rng = np.random.default_rng(20261109)
 R = {}
 

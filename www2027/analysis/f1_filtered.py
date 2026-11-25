@@ -2,7 +2,7 @@
 displayed probability of that bid (within 2% relative); label summaries ('B is $20.64') always count.
 Value per option = last kept match. Trace-implied bid = argmax over options when every option has a value."""
 import json, numpy as np, pandas as pd
-exec(open("batch4_judge_r1.py").read().split("# ================= F1")[0])
+exec(open("batch4_analyses.py").read().split("# ================= F1")[0])
 t = pd.read_csv("trace_matches.csv")
 t["m"] = t["values"].map(json.loads); t["K"] = t.scenario_id.map(lambda i: S[i]["K"])
 def values(row):

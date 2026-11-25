@@ -21,8 +21,8 @@ def table(name, cols, header, rows, caption, label, star=False, size="\\small", 
 F = {}
 EB = J("arxiv/ebay_budget.json"); R1S = J("R1/r1_summary.json"); RUN1 = J("followup/run1_summary.json"); PHI4 = J("followup/run1_phi4096_summary.json")
 R3 = J("rev25/r3_stated_answer.json"); FP = J("rev25/r1_firstprice.json"); AN0 = J("AN/an_p0_summary.json"); ANO = J("AN/an_overnight_summary.json")
-A9 = json.load(open("/tmp/www2027/analysis/revision/out/t9_judge6.json"))["A3"]
-B8 = json.load(open("/tmp/www2027/analysis/revision/out/t10_judge7.json"))["B8"]
+A9 = json.load(open("/tmp/www2027/analysis/revision/out/t9_analyses.json"))["A3"]
+B8 = json.load(open("/tmp/www2027/analysis/revision/out/t10_analyses.json"))["B8"]
 T10B = json.load(open("/tmp/www2027/analysis/revision/out/t10b_hybrid_split.json"))["forced768"]
 fix = lambda d: dict(pt=d["share"], ci=d["ci"])
 F1 = json.load(open("/tmp/www2027/analysis/revision/out/t8_fixes.json"))["F1"]

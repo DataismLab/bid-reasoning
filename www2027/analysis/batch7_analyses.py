@@ -1,4 +1,4 @@
-"""Batch 7: CPU analyses requested by blind review round 3.
+"""Batch 7: CPU analyses on saved data.
 R1 readout-failure taxonomy for complete traces (free-text answer vs constrained letter; objective substitution)
 R2 additive gap decomposition at 768 and a 'best evaluated option' readout counterfactual across budgets
 R3 projected utility by budget from the completion curves (by K)

@@ -1,4 +1,4 @@
-"""Round-5 fixes (CPU, saved data only).
+"""CPU analyses on saved data.
 F1  Unconstrained reference for all traces (including those cut at 1,024), and a three-way split of the 768-token gap
     into arithmetic / unfinished / ignored that sums to 100% (plus a residual), with family-bootstrap intervals.
     Arithmetic: the trace's own stated values (strict product matcher: '(v-b) * p = r' with p equal to the displayed
@@ -75,7 +75,7 @@ for m in MODELS:
 # arithmetic check on annotated traces (annotator-recorded values)
 vs = json.load(open("../validation_sample.json")); L = {}
 for p in (0, 1):
-    for x in json.load(open(f"/tmp/www2027/judge/label/labels_{p}.json")): L[x["item"]] = x
+    for x in json.load(open(f"/tmp/www2027/stated_value_labels/labels_{p}.json")): L[x["item"]] = x
 n_ar = 0; n_st = 0
 for k, r in enumerate(vs):
     s = S[int(r["scenario_id"])]; lab = {o["label"]: o for o in L[k]["options"]}

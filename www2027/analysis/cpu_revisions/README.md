@@ -26,11 +26,11 @@ These curves change only how the saved choices are **scored**. The models always
 
 | Curve | Definition | Script |
 |---|---|---|
-| Empirical (paper) | p(b) = share of the 189 held-out closing prices ≤ b | t10_judge7.py |
-| Lognormal | Lognormal fitted to held-out closing prices per product; p(b) = F(b) | t11_judge8.py (C5) |
-| Shaded 0.85 | p(b) = share of held-out closing prices × 0.85 ≤ b | t11_judge8.py (C5) |
-| Order statistic | Values lognormal, fitted by maximum likelihood to (closing price = second-highest of n values, n = bidders); p(b) = mean over held-out auctions of G(b)^n | t13_judge10.py (E1) |
-| First-price equilibrium | Rivals with values from that G bid β(x) = x − ∫₀ˣ G^{N−1} / G(x)^{N−1}, with N = n + 1; p(b) = mean over auctions of G(β⁻¹(b))^n | t14_judge11.py (F1) |
+| Empirical (paper) | p(b) = share of the 189 held-out closing prices ≤ b | t10_analyses.py |
+| Lognormal | Lognormal fitted to held-out closing prices per product; p(b) = F(b) | t11_analyses.py (C5) |
+| Shaded 0.85 | p(b) = share of held-out closing prices × 0.85 ≤ b | t11_analyses.py (C5) |
+| Order statistic | Values lognormal, fitted by maximum likelihood to (closing price = second-highest of n values, n = bidders); p(b) = mean over held-out auctions of G(b)^n | t13_analyses.py (E1) |
+| First-price equilibrium | Rivals with values from that G bid β(x) = x − ∫₀ˣ G^{N−1} / G(x)^{N−1}, with N = n + 1; p(b) = mean over auctions of G(β⁻¹(b))^n | t14_analyses.py (F1) |
 
 Gap recovered at 768 forced tokens (%):
 

@@ -1,4 +1,4 @@
-"""Item 4 (round 2): robustness of the first-price equilibrium (FP eq.) scoring.
+"""Robustness of the first-price equilibrium (FP eq.) scoring.
 Variants: value distribution lognormal (paper) / gamma / Weibull; second-highest value = closing price, or closing
 price minus eBay's bid increment; number of bidders n, n - 1, n + 1 (fit and rivals). Point estimates of gap recovered
 at 768 tokens, seller revenue and bidder surplus change when answers move to the calculator (per 1,000 decisions),

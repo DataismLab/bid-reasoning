@@ -5,7 +5,7 @@ Same folds and signals as batch3. Two variants:
 Also ranking areas on the held-out ratio gain."""
 import json, numpy as np, pandas as pd
 rng = np.random.default_rng(20261107)
-exec(open("batch3_reviewer_checks.py").read().split("# ======================= A. routing signals")[0])
+exec(open("batch3_checks.py").read().split("# ======================= A. routing signals")[0])
 W = g[g.budget.isin([0, 768])].pivot_table(index=["model", "scenario_id", "repeat_seed"], columns="budget",
         values=["test_utility", "chosen_bid", "constrained_option_probability", "test_utility_ratio"]).reset_index()
 W.columns = ["model", "scenario_id", "order", "b0", "b768", "p0", "p768", "te0", "te768", "q0", "q768"]

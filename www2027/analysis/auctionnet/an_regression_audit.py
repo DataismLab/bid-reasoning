@@ -10,7 +10,7 @@ LAB = {"deepseek_r1_llama_8b": "DeepSeek-8B", "phi4_mini_reasoning": "Phi-mini",
 MODELS = list(LAB)
 def _grab(path, name):
     src = open(path).read(); i = src.index(f"def {name}("); j = re.search(r"\n(?=\S)", src[i + 1:]); return src[i: i + 1 + j.start()]
-ns = dict(np=np); exec(_grab(f"{A}/revision/t10_judge7.py", "read_vals"), ns); exec(_grab(f"{A}/revision/t10_judge7.py", "pick"), ns)
+ns = dict(np=np); exec(_grab(f"{A}/revision/t10_analyses.py", "read_vals"), ns); exec(_grab(f"{A}/revision/t10_analyses.py", "pick"), ns)
 read_vals, pick = ns["read_vals"], ns["pick"]
 tf = pd.read_pickle(f"/tmp/www2027/results/AN/an_traces{TAG}.pkl")
 q_of = lambda i, b: float(S[i]["tu"][np.isclose(S[i]["bids"], b)][0] / S[i]["ustar"])

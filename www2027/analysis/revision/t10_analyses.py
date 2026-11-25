@@ -1,4 +1,4 @@
-"""Round-7 judge fixes (CPU, saved data only). Inputs: ../segments_hist.csv.gz and ../segments_syn.csv.gz (extract8.py).
+"""CPU analyses on saved data. Inputs: ../segments_hist.csv.gz and ../segments_syn.csv.gz (extract8.py).
 B1  Text reader with no arithmetic, windows 300/600/1000 chars, thresholds >=2 / >=K-1; eBay traces and, as data never
     used to design the reader, the synthetic traces.
 B2  Decomposition on stated values only (no true-value matching): Not reached (best never written), Arith. (the trace's
@@ -140,7 +140,7 @@ R["B3"]["incomplete_best_first_right"] = {m: float(B3[B3.model == m].right.mean(
 # ---------------- B4 arithmetic error per option
 vs = json.load(open("../validation_sample.json")); L = {}
 for p in (0, 1):
-    for x in json.load(open(f"/tmp/www2027/judge/label/labels_{p}.json")): L[x["item"]] = x
+    for x in json.load(open(f"/tmp/www2027/stated_value_labels/labels_{p}.json")): L[x["item"]] = x
 n = e = 0
 for k, r in enumerate(vs):
     s = S[int(r["scenario_id"])]; lab = {o["label"]: o for o in L[k]["options"]}
@@ -222,7 +222,7 @@ for m in MODELS:
     pt = stats_(z); bs = np.array([stats_(z.iloc[family_boot_ids(z.fam.values, rng)]) for _ in range(2000)])
     R["B8"][m] = {k: dict(pt=float(pt[j]), ci=[float(np.percentile(bs[:, j], 2.5)), float(np.percentile(bs[:, j], 97.5))]) for j, k in enumerate(["answer", "ge2", "km1", "oracle", "dollar"])}
 
-json.dump(R, open(f"{OUTDIR}/t10_judge7.json", "w"), indent=1, default=float)
+json.dump(R, open(f"{OUTDIR}/t10_analyses.json", "w"), indent=1, default=float)
 print(json.dumps(R, default=lambda o: round(float(o), 3))[:200])
 
 # ---------------- per-budget series for Figure 1c

@@ -1,5 +1,5 @@
 import json, numpy as np, pandas as pd
-exec(open("batch7_judge_r3.py").read().split("# ---------- R1")[0])
+exec(open("batch7_analyses.py").read().split("# ---------- R1")[0])
 rng = np.random.default_rng(5)
 out = {}
 for m in MODELS:

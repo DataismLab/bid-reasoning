@@ -10,7 +10,7 @@ evaluated out of sample.
     first, unfinished list first (fewest written values first), at every call rate."""
 import sys; sys.path.insert(0, "/tmp/www2027/analysis/rev25")
 from r_common import *
-_t10 = open("/tmp/www2027/analysis/revision/t10_judge7.py").read()
+_t10 = open("/tmp/www2027/analysis/revision/t10_analyses.py").read()
 exec(_t10[_t10.index("# synthetic"):_t10.index("sq0 =")].replace("../", "/tmp/www2027/analysis/"))
 SET = [(W, n) for W in (300, 600, 1000) for n in ("2", "K-1")]
 for W in (300, 1000):

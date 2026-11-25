@@ -39,7 +39,7 @@ for m in MODELS:
 # validation of segment values against annotators
 vs = json.load(open("../validation_sample.json")); L = {}
 for p in (0, 1):
-    for x in json.load(open(f"/tmp/www2027/judge/label/labels_{p}.json")): L[x["item"]] = x
+    for x in json.load(open(f"/tmp/www2027/stated_value_labels/labels_{p}.json")): L[x["item"]] = x
 key = tf.set_index(["model", "scenario_id", "repeat_seed", "budget"])
 n_opt = n_hit = n_found = n_lab = 0
 for k, r in enumerate(vs):

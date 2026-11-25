@@ -13,7 +13,7 @@ PK = f"{OUT}/annotator_package"; AU = f"{OUT}/for_authors_only"
 os.makedirs(PK); os.makedirs(AU)
 vs = json.load(open("../validation_sample.json")); L = {}
 for p in (0, 1):
-    for x in json.load(open(f"/tmp/www2027/judge/label/labels_{p}.json")): L[x["item"]] = x
+    for x in json.load(open(f"/tmp/www2027/stated_value_labels/labels_{p}.json")): L[x["item"]] = x
 rnd = random.Random(20261107)
 by = {}
 for k, r in enumerate(vs): by.setdefault(r["model"], []).append(k)

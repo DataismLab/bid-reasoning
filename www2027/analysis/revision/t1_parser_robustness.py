@@ -36,7 +36,7 @@ for tol in [0.01, 0.02, 0.05]:
 # annotator-label version on the 150 annotated traces
 vs = json.load(open("../validation_sample.json")); L = {}
 for p in (0, 1):
-    for x in json.load(open(f"/tmp/www2027/judge/label/labels_{p}.json")): L[x["item"]] = x
+    for x in json.load(open(f"/tmp/www2027/stated_value_labels/labels_{p}.json")): L[x["item"]] = x
 tf2 = load_parse(0.02).set_index(["model", "scenario_id", "repeat_seed", "budget"])
 ann = []
 for k, r in enumerate(vs):
