@@ -82,5 +82,5 @@ Each decision row records the scenario, option order, reasoning text, chosen bid
 
 ## Other folders
 
-- `judge/`: inputs and outputs of internal review checks used while revising the paper.
+- `judge/label/`: per-option values recorded for 150 traces, read by the parser checks in `analysis/revision/`.
 - `human_annotation/`: a package for hand-labelling 100 traces. It was not used for any number in the paper; all splits come from code.
