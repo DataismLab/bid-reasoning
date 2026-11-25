@@ -1,5 +1,5 @@
 """Write every table of the arXiv version as LaTeX from saved results files (no number typed by hand).
-Output: paper_arxiv/tables/*.tex and results/arxiv/facts.json (key ranges quoted in the text)."""
+Output: results/arxiv/tables/*.tex and results/arxiv/facts.json (key ranges quoted in the text)."""
 import json, os, numpy as np
 R = "/tmp/www2027/results"; T = "/tmp/www2027/results/arxiv/tables"; os.makedirs(T, exist_ok=True)
 J = lambda p: json.load(open(f"{R}/{p}"))
@@ -155,7 +155,7 @@ for m in M:
     rows.append(" & ".join([LAB[m], CI(B8[m]["answer"]), f"{100*h['pt']:.0f} [{100*h['ci'][0]:.0f}, {100*h['ci'][1]:.0f}]", f"{100*R6['landscape_both']['models'][m]['share_positive' if False else 'calc_lead_768']['share_positive']:.1f}"]
                 + [P(R9[v][m]["gap768"]) for v in ("lognormal", "gamma", "weibull", "increment", "n_minus_1", "n_plus_1")]))
 table("tab_robust", "lccc cccccc", "& \\multicolumn{3}{c}{Empirical curve} & \\multicolumn{6}{c}{First-price equilibrium curve, variants} \\\\ \\cmidrule(lr){2-4}\\cmidrule(lr){5-10} Model & Family boot. & Product boot. & Calc. ahead & Logn. & Gamma & Weib. & Incr. & $n-1$ & $n+1$", rows,
-      "Robustness of gap recovered at 768 tokens (\\%). Family boot.: the main interval. Product boot.: resampling the three products, then families within them. Calc. ahead: share of landscape-bootstrap draws (construction and held-out auctions both resampled) in which the calculator beats the model (\\%). First-price variants: value distribution (lognormal, gamma, Weibull), a coarser bid increment, and one bidder fewer or more.",
+      "Robustness of gap recovered at 768 tokens (\\%). Family boot.: the main interval. Product boot.: resampling the three products, then families within them. Calc. ahead: share of landscape-bootstrap draws (construction and held-out auctions both resampled) in which the calculator beats the model (\\%). First-price variants: value distribution (lognormal, gamma, Weibull), a coarser bid increment, and one bidder fewer or more. Logn.\\ refits the curve behind the FP eq.\\ column of Table~\\ref{tab:gapebay}; the two differ by under one point.",
       "tab:robust", star=True, size="\\footnotesize")
 
 # ---- cost
@@ -171,9 +171,11 @@ rows = []
 for m in ["phi4_mini_reasoning", "granite_3_2_8b_instruct", "deepseek_r1_llama_8b", "qwen3_8b"]:
     for rt, lab in (("forced768", "768"), ("unforced1024", "1,024 run")):
         d = R4P.get(f"{m}|{rt}")
-        if d: rows.append(f"{LAB[m]} & {lab} & {CI(d['gap_paper'])} & {CI(d['gap_new'])} & {CI(d['gap_diff'])}")
+        # original-prompt column: same estimate and interval as tab_gap_ebay (the run4 bootstrap gives the same point, a slightly different interval)
+        base = B8[m]["answer"] if rt == "forced768" else natgap(m)
+        if d: rows.append(f"{LAB[m]} & {lab} & {CI(base)} & {CI(d['gap_new'])} & {CI(d['gap_diff'])}")
 table("tab_prompt", "llccc", "Model & Setting & Original prompt & With list instruction & Change", rows,
-      "Adding one instruction (``End by listing the expected profit of each option, then answer with the option that has the largest.''): gap recovered, \\% [95\\% interval].", "tab:prompt", size="\\footnotesize")
+      "Adding one instruction (``End by listing the expected profit of each option, then answer with the option that has the largest.''): gap recovered, \\% [95\\% interval]. Original prompt: as in Table~\\ref{tab:gapebay}.", "tab:prompt", size="\\footnotesize")
 
 # ---- facts for the text
 F["qcalc"] = 0.981
